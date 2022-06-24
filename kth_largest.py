@@ -13,6 +13,7 @@ def findKthLargest1(nums, k):
     nums.sort()
     return nums[len(nums) - k]
 
+# priority queue
 def findKthLargest2(nums, k):
     p = []
     for i in range(len(nums)):
@@ -20,6 +21,11 @@ def findKthLargest2(nums, k):
         if len(p) > k:
             heapq.heappop(p)
     return p[0]
+
+# quickselect algorithm
+def partition(nums):
+    pivot = nums[-1]
+    p += 1
 
 nums = [3,2,1,5,6,4]
 k = 2
