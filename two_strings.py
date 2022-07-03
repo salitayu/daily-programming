@@ -9,5 +9,6 @@ def twoStrings(s1, s2):
         if key in substrings2:
             return 'YES'
     return 'NO'
+
 print(twoStrings('and', 'art'))
 print(twoStrings('be', 'cat'))
