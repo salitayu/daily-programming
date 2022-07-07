@@ -8,32 +8,8 @@ def reorderLogFiles(self, logs):
         Letter Logs are sorted lexicographically by their contents. If their contents are the same, sort them lexicographically by their identifiers.
         Return the final order of the logs.
         '''
-        letters = []
-        digits = []
-        result = []
-        for i in logs:
-            count = 0
-            for j in i:
-                if j.isalpha() or j == ' ':
-                    count += 1
-            if count == len(i) - 1:
-                letters.append(i)
-            else:
-                digits.append(i)
-        # letters.sort()
-        # newletters = ['art can', 'own kit dig', 'art zero']
-        # newletters.sort()
-        # print(newletters)
-        newletters = []
-        for i in letters:
-            count = 0
-            for j in i:
-                if j == ' ':
-                    count += 1
-                if count >= 1:
-                    newletters.append(j)
-                    count += 1
-        print('newletters ', newletters)
-        for i in digits:
-            result.append(i)
-        return result
+        def get_key(log):
+            _id, rest = log.split(" ", maxsplit=1)
+            # type of log 0 digit 1 letter, rest content of letter logs, identifier of letter logs
+            return (0, rest, _id) if rest[0].isalpha() else (1, )
+        return sorted(logs, key=get_key)

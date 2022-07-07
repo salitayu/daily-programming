@@ -1,13 +1,13 @@
 def longestSubstring(str):
-    result = {}
+    results = {}
     start = 0
     maxlen = 0
     for end in range(0, len(str)):
-        current = str[end]
-        if current in result:
-            start = max(start + 1, result[current] + 1)
-        result[current] = end
-        maxlen = max(maxlen, end - start + 1)
+        curr = str[end]
+        if curr in results:
+            start = max(start, results[curr] + 1)
+        results[curr] = end
+        maxlen = max(end - start + 1, maxlen)
     return maxlen
 
 print(longestSubstring('abcabcbb'))

@@ -1,23 +1,33 @@
 def longestPalindrome(s):
-    slen = len(s)
-    dp = [[0 for j in range(slen)] for i in range(slen)]
-    start = 0
-    maxlen = 1
+    c = 0
+    r = 0
+    t = []
+    t.append('$')
     for i in range(0, len(s)):
-        dp[i][i] = 1
-    for i in range(0, len(s) - 1):
-        if s[i] == s[i+1]:
-            dp[i][i+1] = 1
-            start = i
-            maxlen = 2
-    for k in range(2, slen):
-        for i in range(slen - k):
-            j = i + k
-            if s[i] == s[j] and dp[i+1][j-1]==1:
-                dp[i][j] = 1
-                start = i
-                maxlen = max(j - i + 1, maxlen)
-    return s[start:start+maxlen]
+        t.append('#')
+        t.append(s[i])
+    t.append('#')
+    t.append('@')
+    tlen = len(t)
+    p = [0 for i in range(tlen)]
+    print(t)
+    for i in range(1, tlen-1):
+        m = 2 * c - i
+        if i < r:
+            p[i] = min(r - i, p[m])
+        while t[i+(1+p[i])] == t[i-(1+p[i])]:
+            p[i] = p[i] + 1
+        if i + p[i] > r:
+            c = i
+            r = i + p[i]
+    maxlen = max(p)
+    index = p.index(maxlen)
+    result = ""
+    for i in range(index - maxlen, index + maxlen):
+        print(i)
+        if t[i] != "$" and t[i] != "#" and t[i] != "@":
+            result += t[i]
+    return result
 
 print(longestPalindrome("babad"))
 print(longestPalindrome("cbbd"))
