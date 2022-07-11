@@ -15,4 +15,5 @@ def addBoldTag(s, d):
         if flag[i] and (i == n - 1 or (i < n - 1 and not flag[i+1])):
             ans += '</b>'
     return ans
+    
 print(addBoldTag('abcxyz123',['abc','123']))
