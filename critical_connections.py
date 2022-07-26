@@ -17,7 +17,7 @@ def criticalConnections(n, connections):
     # after doing dfs on all nodes, all edges in cycles are discarded so the remaining edges are critical connections
     import collections
     def makeGraph(connections):
-        graph = collections.defaultdic(list)
+        graph = collections.defaultdict(list)
         for conn in connections:
             graph[conn[0]].append(conn[1])
             graph[conn[1]].append(conn[0])
