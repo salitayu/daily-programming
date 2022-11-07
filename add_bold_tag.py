@@ -1,3 +1,6 @@
+from tkinter import N
+
+
 def addBoldTag(s, d):
     n = len(s)
     flag = [0] * n

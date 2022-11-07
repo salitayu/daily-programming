@@ -1,12 +1,12 @@
 const twoSum = (nums, target) => {
-    const results = {}
+    d = {}
     for (let i = 0; i < nums.length; i++) {
-        const current = nums[i]
-        const diff = target - current
-        if (diff in results) {
-            return [results[diff], i]
+        const curr = nums[i]
+        const diff = target - curr
+        if (diff in d) {
+            return [d[diff], i]
         }
-        results[current] = i
+        d[curr] = i
     }
     return [-1, -1]
 }

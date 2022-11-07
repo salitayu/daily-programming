@@ -7,7 +7,7 @@ class ListNode {
 
 const addTwoNumbers = (l1, l2) => {
     let result = new ListNode(0)
-    let resultRef = result
+    const resultRef = result
     let carry = 0
     while (l1 || l2) {
         let x = 0
@@ -29,8 +29,6 @@ const addTwoNumbers = (l1, l2) => {
         if (l2) {
             l2 = l2.next
         }
-    }
-    if (carry > 0) {
         result.next = new ListNode(carry)
     }
     return resultRef.next
