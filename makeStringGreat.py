@@ -6,3 +6,4 @@ def makeStringGreat(s):
         else:
             stack.append(i)
     return ''.join(stack)
+    
