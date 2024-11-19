@@ -17,3 +17,17 @@ const arithmeticSequences = (nums) => {
 	}
 	return result
 }
+def arithmeticSequences(nums):
+    count = 0
+    currentdiff = -1
+    result = 0
+    if len(result) < 3:
+        return 0
+    for i in range(0, len(nums)):
+        if tempdiff != currentdiff:
+            currentdiff = tempdiff
+            count = 1
+        else:
+            result += count
+            count += 1
+    return result

@@ -10,3 +10,12 @@ const bestTimeToBuySellStock = () => {
     }
     return result
 }
+def bestTimeToBuySellStock(prices):
+    result = 0
+    minprice = prices[0]
+    for i in range(1, len(prices)):
+        current = prices[i]
+        if current < minprice:
+            minprice = current
+        result = max(result, current - minprice)
+    return result

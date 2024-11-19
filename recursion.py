@@ -68,6 +68,21 @@ def convert_base(number, base):
         return conversions[number]
     return convert_base(number // base, base) + conversions[number % base]
 
+def sumofnaturalnumbers(number):
+    if number == 1:
+        return number
+    return number + sumofnaturalnumbers(number - 1)
+
+def binarysearch(A, left, right, x):
+    if left > right:
+        return -1
+    mid = (left + right) / 2
+    if x == A[mid]:
+        return mid
+    if x < A[mid]:
+        return binarysearch(A, left, mid - 1, x)
+    return binarysearch(A, mid + 1, right, x)
+
 # merge 2 sorted linkedlist
 # insert into binary search tree
 # find all leaf nodes
@@ -87,10 +102,27 @@ def convert_base(number, base):
 # champage towers
 # delete first occurance of string in nested array
 # verify json employee of managers structure
+# find the first fruit
 # flatten nested list
+def flatten(list, newlist):
+    for i in range(0, len(list)):
+        if isinstance(list[i], int):
+            newlist.append(list[i])
+        else:
+            flatten(newlist[i], newlist)
+
 # binary search
 # fibonacci, climb stairs
+def fibonacci(num):
+    if num == 0 or num == 1:
+        return 1
+    return fibonacci(num - 1) + fibonacci(num - 2)
+
 # factorial
+def factorial(nums):
+    if nums == 0:
+        return 1
+    return nums * factorial(nums - 1)
 # hackerrank recursive super digit
 # leetcode is same tree
 # generate combinations and subsets
@@ -131,6 +163,78 @@ def tower_of_hanoi(height, frompole, topole, withpole):
 def move(height, frompole, topole):
     print('moving ', height, ' from pole ', frompole, ' to pole ', topole)
 
+def find_subsets(nums):
+    subsets = [[]]
+    for curr in nums:
+        n = len(subsets)
+        for j in range(0, n):
+            temp = list(subsets[j])
+            temp.append(curr)
+            subsets.append(temp)
+    return subsets
+
+def permute(string, start, end):
+    if start == end:
+        print(string)
+    else:
+        for i in range(start, end):
+            string[start], string[i] = string[i], string[start]
+            permute(string, start+1, end)
+            string[start], string[i] = string[i], string[start]
+
+def combination(iterable, r):
+    pool = tuple(iterable)
+    n = len(pool)
+    if r > n:
+        return
+    indices = [0,1,2]
+    yield tuple(pool[i] for i in indices)
+    while True:
+        for i in reversed(range(r)):
+            if indices[i] != i + n - r:
+                break
+            else:
+                return
+            indices[i] += 1
+            for j in range(i + 1, r):
+                indices[j] = indices[j - 1] + 1
+            yield tuple(pool[i] for i in indices)
+
+
+def removeFirstInstance(fruits, toDelete):
+    if isinstance(fruits, list):
+        if len(fruits) > 0:
+            if isinstance(fruits[0], str):
+                if fruits[0] == toDelete:
+                    del fruits[0]
+                    return fruits
+                # i = 0
+                # while i < len(fruits):
+                #     if fruits[i] == toDelete:
+                #         del fruits[i]
+                #         print(fruits)
+                #         return fruits
+                #     else:
+                #         i += 1
+            else:
+                for i in range(0, len(fruits)):
+                    removeFirstInstance(fruits[i], toDelete)
+                #return fruits
+def remove_first_occurrence(structure, element):
+    if isinstance(structure, list):
+        if element in structure:
+            # Remove the first occurrence of the element
+            structure.remove(element)
+            return structure
+        else:
+            # Recursively search the sublists for the element
+            for i in range(len(structure)):
+                structure[i] = remove_first_occurrence(structure[i], element)
+            return structure
+    else:
+        # If the element is not a list, it can't contain the element we're looking for
+        return structure
+
 if __name__ == '__main__':
     # arr = [9, 5, 8, 6, -2, 1, 7, -1, 2, 0]
     #
@@ -162,3 +266,8 @@ if __name__ == '__main__':
     # print(result[::-1])
 
     print(convert_base(16, 16))
+
+    fruits = [[[], ['apple', 'peaches']], [['grapes'], ['apple']], ['orange']]
+    removeFirstInstance(fruits, 'apple')
+    # remove_first_occurrence(fruits, 'apple')
+    print(fruits)

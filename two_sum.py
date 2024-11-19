@@ -5,7 +5,7 @@ def two_sum(nums, target):
         diff = target - current
         if diff in results:
             return [results[diff], i]
-        results[nums[i]] = i
+        results[current] = i
     return [-1,-1]
 
 nums = [2, 7, 11, 15]

@@ -1,6 +1,3 @@
-from tkinter import N
-
-
 def criticalConnections(n, connections):
     # an edge is a critical connection if and only if it is not a cycle
     # node rank - depth of node during dfs, starting node rank 0
